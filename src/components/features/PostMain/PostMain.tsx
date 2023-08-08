@@ -5,9 +5,7 @@ import { urlForImage } from '@/lib/sanity.image'
 import { type Post } from '@/lib/sanity.queries'
 import { formatDate } from '@/utils'
 
-export default async function PostMain({ post }: { post: Post }) {
-  
-  const body = await markdownToHtml(post.bio)
+export default function PostMain({ post }: { post: Post }) {
   
   return (
     <main className='flex-1'>
@@ -32,7 +30,7 @@ export default async function PostMain({ post }: { post: Post }) {
             )}
           </div>
         </header>
-        <div className='article__body prose max-w-full px-3 sm:px-6 md:px-12 lg:px-16 py-8' dangerouslySetInnerHTML={{ __html: body }}></div>
+        <div className='article__body prose max-w-full px-3 sm:px-6 md:px-12 lg:px-16 py-8' dangerouslySetInnerHTML={{ __html: post.bio }}></div>
       </article>
 
       {/*<div className="prose px-4 sm:px-6 md:px-8 mx-auto mt-12 mb-6"> <PortableText value={post.body} /> </div>*/}
