@@ -21,14 +21,15 @@ export default function PostMainPreview({ post:initialPost }: { post: Post }) {
   )
   
   useEffect(() => {
-    (async(v) => {
+    if(livePost){
       try {
-        const bio = await markdownToHtml(v.bio);
-        setPost(()=>({...v,bio:bio}));
+        markdownToHtml(livePost.bio).then((bio)=>{
+          setPost({...livePost, bio});
+        })
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
-    })(livePost);
+    }
   }, [livePost])
   
   return (

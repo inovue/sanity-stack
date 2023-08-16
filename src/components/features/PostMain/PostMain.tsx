@@ -1,6 +1,5 @@
 import Image from 'next/image'
 
-import { markdownToHtml } from '@/lib/markdown-to-html'
 import { urlForImage } from '@/lib/sanity.image'
 import { type Post } from '@/lib/sanity.queries'
 import { formatDate } from '@/utils'

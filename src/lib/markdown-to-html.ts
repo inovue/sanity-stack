@@ -1,5 +1,5 @@
 import rehypeKatex from "rehype-katex";
-//import rehypeMermaid from 'rehype-mermaidjs'
+import rehypeMermaid from 'rehype-mermaidjs'
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeStringify from "rehype-stringify";
 import remarkGemoji from "remark-gemoji";
@@ -9,23 +9,27 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 
+import { setCDN } from "shiki";
 
 
-export const markdownToHtml = async (markdownContent: string) => {
-  const result = await unified()
-    .use(remarkParse)
-    .use(remarkGemoji)
-    .use(remarkGfm)
-    .use(remarkMath)
+export const markdownToHtml = async (markdownContent: string, preview:boolean=false) => {
+  
+  if(preview) setCDN("/");
 
-    .use(remarkRehype)
+  const processor = unified()
+  processor.use(remarkParse)
+  processor.use(remarkGemoji)
+  processor.use(remarkGfm)
+  processor.use(remarkMath)
+  
+  processor.use(remarkRehype)
+  
+  processor.use(rehypeKatex)
+  //processor.use(rehypeMermaid)
+  processor.use(rehypePrettyCode)
+
+  processor.use(rehypeStringify)
     
-    .use(rehypeKatex)
-    //.use(rehypeMermaid)
-    .use(rehypePrettyCode)
-
-    .use(rehypeStringify)
-    
-    .process(markdownContent);
-  return result.toString();
+  const result = await processor.process(markdownContent)
+  return result.toString()
 };
