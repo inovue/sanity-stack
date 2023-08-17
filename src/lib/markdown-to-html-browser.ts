@@ -10,24 +10,25 @@ import { unified } from "unified";
 import { setCDN } from "shiki";
 import remarkRehype from "remark-rehype";
 import rehypeEscapeMermaid from "./rehypeEscapeMermaid";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 export const markdownToHtmlBrowser = async (markdownContent: string) => {
   
   setCDN("/");
 
-  const processor = unified();
-  processor.use(remarkParse);
-  processor.use(remarkGemoji);
-  processor.use(remarkGfm);
-  processor.use(remarkMath);
-  
-  processor.use(remarkRehype);
-  
-  processor.use(rehypeKatex);
-  processor.use(rehypeEscapeMermaid);
-  processor.use(rehypePrettyCode);
-
-  processor.use(rehypeStringify);
+  const processor = unified()
+    .use(remarkParse)
+    .use(remarkGemoji)
+    .use(remarkGfm)
+    .use(remarkMath)
+    .use(remarkRehype)
+    .use(rehypeKatex)
+    .use(rehypeEscapeMermaid)
+    .use(rehypePrettyCode)
+    .use(rehypeSlug)
+    .use(rehypeAutolinkHeadings)
+    .use(rehypeStringify);
     
   const result = await processor.process(markdownContent);
   return result.toString();

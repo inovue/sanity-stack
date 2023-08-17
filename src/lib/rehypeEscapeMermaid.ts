@@ -1,11 +1,16 @@
 import {visit} from 'unist-util-visit';
 
-/** @type {import('unified').Plugin<[], import('hast').Root>} */
-export default function rehypeEscapeMermaid() {
-  return (tree: any) => {
+import { Plugin } from 'unified';
+import { Root, Element, Comment, Properties, Literal } from 'hast';
+
+export type RehypeEscapeMermaidOptions = {}
+
+const rehypeEscapeMermaid: Plugin<[RehypeEscapeMermaidOptions?], Root> = (options = {}) => {
+
+  return (tree) => {
     visit(tree, "element", (node, index, parent) => {
-      if (typeof index === 'number' && node.tagName === 'pre' && node.children.length === 1 ){
-        let firstChild = node.children[0];
+      if (parent && typeof index === 'number' && node.tagName === 'pre' && node.children.length === 1 ){
+        let firstChild = node.children[0] as Element;
         let childClassNames = firstChild.properties?.className;
         if(firstChild.tagName === 'code' && Array.isArray(childClassNames) && childClassNames.includes('language-mermaid')) {
           firstChild.tagName = 'div';
@@ -15,3 +20,5 @@ export default function rehypeEscapeMermaid() {
     });
   };
 }
+
+export default rehypeEscapeMermaid;
