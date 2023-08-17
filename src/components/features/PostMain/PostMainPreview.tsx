@@ -10,6 +10,7 @@ import PostMain from './PostMain'
 import { markdownToHtmlBrowser } from '@/lib/markdown-to-html-browser'
 import { useEffect, useState } from 'react'
 
+import mermaid from 'mermaid';
 
 
 export default function PostMainPreview({ post:initialPost }: { post: Post }) {
@@ -25,15 +26,26 @@ export default function PostMainPreview({ post:initialPost }: { post: Post }) {
       try {
         markdownToHtmlBrowser(livePost.bio).then((bio)=>{
           setPost(()=>({...livePost, bio}));
-        }).catch((error)=>{
-          console.log(error);
         })
       } catch (error) {
         console.log(error);
       }
       
     }
-  }, [livePost])
+  }, [livePost]);
+
+  useEffect(() => {
+    console.log('change post!')
+    if(post){
+      try {
+        
+        mermaid.initialize({ startOnLoad: false });
+        mermaid.run({nodes: document.querySelectorAll('div.language-mermaid')});
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [post]);
   
   return (
     <PostMain post={post} />

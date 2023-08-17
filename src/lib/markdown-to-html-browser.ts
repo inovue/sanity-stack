@@ -9,7 +9,7 @@ import { unified } from "unified";
 
 import { setCDN } from "shiki";
 import remarkRehype from "remark-rehype";
-
+import rehypeEscapeMermaid from "./rehypeEscapeMermaid";
 
 export const markdownToHtmlBrowser = async (markdownContent: string) => {
   
@@ -20,9 +20,11 @@ export const markdownToHtmlBrowser = async (markdownContent: string) => {
   processor.use(remarkGemoji);
   processor.use(remarkGfm);
   processor.use(remarkMath);
+  
   processor.use(remarkRehype);
   
   processor.use(rehypeKatex);
+  processor.use(rehypeEscapeMermaid);
   processor.use(rehypePrettyCode);
 
   processor.use(rehypeStringify);
