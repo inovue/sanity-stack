@@ -29,6 +29,7 @@ export default async function PostPage({params}: {params: {slug: string}}) {
   
   const client = getClient(preview)
   let post = await getPost(client, params.slug)
+  
   const bio = await markdownToHtml(post.bio)
   post = {...post , bio}
   

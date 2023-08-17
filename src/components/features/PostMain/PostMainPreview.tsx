@@ -7,8 +7,8 @@ import { type Post } from '@/lib/sanity.queries'
 import { postBySlugQuery } from '@/lib/sanity.queries'
 
 import PostMain from './PostMain'
-import { markdownToHtml } from '@/lib/markdown-to-html'
-import { useEffect, useMemo, useState } from 'react'
+import { markdownToHtmlBrowser } from '@/lib/markdown-to-html-browser'
+import { useEffect, useState } from 'react'
 
 
 
@@ -23,12 +23,15 @@ export default function PostMainPreview({ post:initialPost }: { post: Post }) {
   useEffect(() => {
     if(livePost){
       try {
-        markdownToHtml(livePost.bio).then((bio)=>{
-          setPost({...livePost, bio});
+        markdownToHtmlBrowser(livePost.bio).then((bio)=>{
+          setPost(()=>({...livePost, bio}));
+        }).catch((error)=>{
+          console.log(error);
         })
       } catch (error) {
         console.log(error);
       }
+      
     }
   }, [livePost])
   
