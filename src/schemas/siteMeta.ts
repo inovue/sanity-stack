@@ -22,12 +22,12 @@ export default defineType({
     {
       name: "manifest",
       title: "Web App Settings",
-      hidden: ({ document }) => !(document.isPwa)
+      hidden: ({ document }) => !(document?.isPwa)
     },
     {
       name: "google",
       title: "Google Config",
-      hidden: ({ document }) => !(document.isGoogleAnalyticsEnabled)
+      hidden: ({ document }) => !(document?.isGoogleAnalyticsEnabled)
     },
   ],
   fields: [
