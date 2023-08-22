@@ -22,7 +22,11 @@ export default function Container({ children }: { children: React.ReactNode }) {
           </Link>
         </div>
       </header>
-      <main className='flex-1 page-content-wrapper w-full bg-slate-500 pt-[56px] mb-auto'>{children}</main>
+      
+      <main className='flex-1 page-content-wrapper w-full bg-slate-200 pt-[56px] mb-auto'>
+        {children}
+      </main>
+      
       <footer className="footer">
         <p className="footer__text text-center py-6">
           Made with{' '}

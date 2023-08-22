@@ -4,7 +4,7 @@ import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { useNextSanityImage } from 'next-sanity-image';
 import Image from 'next/image';
 
-type SanityImageProps = Omit<React.ComponentProps<typeof Image>, 'src'> & { source: SanityImageSource }
+export type SanityImageProps = Omit<React.ComponentProps<typeof Image>, 'src'> & { source: SanityImageSource }
 
 const SanityImage = ({ source, ...props }:SanityImageProps) => {
   
