@@ -6,16 +6,18 @@ import { type Post } from '@/lib/sanity.queries'
 import { formatDate } from '@/utils'
 import Link from 'next/link'
 import {createTailwindProvider} from '@/lib/TailwindProvider'
+import classNames from 'classnames'
 
 
 export default function PostCard({ post }: { post: Post }) {
   const tw = createTailwindProvider()
-  const sizes = tw.resolveImageSizes({sm:'150px', md:'200px'}, '300px')
+  const imageClassName = "w-40 sm:w-64 md:w-96"
+  const sizes = tw.resolveSizes(imageClassName)
   
   return (
     <div className="card bg-white border border-gray-200 rounded-lg shadow flex flex-row-reverse max-w-xl hover:bg-gray-100">
       {post.mainImage ? (
-        <figure className='relative w-[150px] sm:w-[200px]'>
+        <figure className={classNames('relative', imageClassName)}>
           <Image 
             source={post.mainImage}
             className="card__cover rounded-r-lg object-cover" 

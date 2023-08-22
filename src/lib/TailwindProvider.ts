@@ -2,7 +2,7 @@
 import resolveConfig from 'tailwindcss/resolveConfig'
 
 import { Config } from 'tailwindcss/types/config'
-import tailwindConfig from '@/../tailwind.config'
+import tailwindConfig from '../../tailwind.config'
 
 
 type Breakpoint = 'sm' | 'md' | 'lg' | 'xl' | '2xl'
@@ -20,6 +20,24 @@ class TailwindProvider {
       .reduce((acc, curr) => screenConfig[curr]?[...acc, `(max-width: ${screenConfig[curr]}) ${sizes[curr]}`]:[...acc], [] as string[])
       .concat([defaultSize])
       .join(', ');
+  }
+
+  public resolveSizes = (className: string) => {
+    const classNames = className.split(' ')
+    const screens = this.config.theme!.screens! as {[k:string]:string}
+    const widthPattern = new RegExp(`^(?<screen>${Object.keys(screens).join('|')})?\\:?w-\\[?(?<width>\\d{1,}([a-z]+)?)\\]?$`)
+      
+    return classNames.reduce((acc, curr) => {
+      let { screen, width } = curr.match(widthPattern)?.groups || {};
+      if (width) {
+        if(/^\d+$/.test(width)) width = parseInt(width)/4 + 'rem';
+        return [...acc, { width, breakpoint: screen ? parseInt(screens[screen].replace(/[^0-9]/g, '')):-1 }];
+      }
+      return acc;
+    }, [] as {width:string, breakpoint:number}[])
+    .sort((a, b) => b.breakpoint - a.breakpoint)
+    .map(({ width, breakpoint }) => (0<breakpoint) ? `(min-width: ${breakpoint}px) ${width}` : width)
+    .join(', ');
   }
 
   public resolveScreen = (width:number) => {
