@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
   if (slug) {
     //res.setPreviewData({ token: readToken })
     draftMode().enable()
-    return NextResponse.redirect(new URL(`/posts/${slug}`, request.url))
+    return NextResponse.redirect(new URL(`/posts/${slug}/preview`, request.url))
   }
 
   

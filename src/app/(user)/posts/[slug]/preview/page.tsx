@@ -3,34 +3,28 @@ import 'katex/dist/katex.min.css'
 import { draftMode } from 'next/headers'
 
 import Container from '@/components/Container'
-import PostMain from '@/components/features/PostMain/PostMain'
+import PostMainPreview from '@/components/features/PostMain/PostMainPreview'
+import PreviewProvider from '@/components/PreviewProvider'
 import { readToken } from '@/lib/sanity.api'
 import { getClient } from '@/lib/sanity.client'
-import { getPost, getPostSlugs } from '@/lib/sanity.queries'
-import { markdownToHtml } from '@/lib/markdown-to-html'
-
-
-export async function generateStaticParams() {
-  const client = getClient()
-  const slugs = await getPostSlugs(client)
-
-  return slugs.map((slug) =>({slug}))
-}
+import { getPost } from '@/lib/sanity.queries'
+import { redirect } from 'next/navigation'
 
 
 export default async function PostPage({params}: {params: {slug: string}}) {
   const preview = draftMode().isEnabled ? {token: readToken} : undefined
   
+  if (!preview) redirect(`/posts/${params.slug}`);
+
   const client = getClient(preview)
   let post = await getPost(client, params.slug)
-  
-  //const bio = await markdownToHtml(post.bio)
-  //post = {...post , bio}
   
   return (
     <Container>
       <div className='main-wrapper w-full max-w-[1280px] mx-auto flex gap-4 md:p-4'>
-        <PostMain post={post} />
+        <PreviewProvider token={preview.token}>
+          <PostMainPreview post={post} />
+        </PreviewProvider>
         
         <aside className='sidebar-right hidden md:block w-[30%]'>
           <div className='bg-white'></div>
