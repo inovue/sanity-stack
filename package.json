@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start -p 3015",
     "lint": "next lint",
+    "analyze": "ANALYZE=true next build",
     "show": "gh repo view inovue/sanity-stack -w -b "
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^13.4.19",
     "@playwright/test": "^1.37.1",
     "@portabletext/react": "^3.0.4",
     "@sanity/client": "^6.4.3",
