@@ -4,6 +4,7 @@ import {NextRequest, NextResponse} from 'next/server'
 import { previewSecretId, readToken } from '@/lib/sanity.api'
 import { getClient } from '@/lib/sanity.client'
 import { getPreviewSecret } from '@/utils/previewSecret'
+import { redirect } from 'next/navigation'
 
 export async function GET(request: NextRequest) {
   
@@ -43,7 +44,7 @@ export async function GET(request: NextRequest) {
   if (slug) {
     //res.setPreviewData({ token: readToken })
     draftMode().enable()
-    return NextResponse.redirect(new URL(`/posts/${slug}/preview`, request.url))
+    return redirect(`/posts/${slug}/preview`)
   }
 
   
