@@ -12,7 +12,7 @@ echo "git config --global user.name \"Your Name\""
 echo "git config --global user.email \"Your Email\""
 echo "-----------------------------------------------"
 
-cp .env.local.example .env.local
+# cp -n .env.local.example .env.local
 npm ci
 npx --yes playwright install --with-deps chromium
 

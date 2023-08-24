@@ -4,11 +4,6 @@
   functions = "netlify/functions"
   publish = ".next"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-[[plugins]]
-  package = "netlify-plugin-cache-nextjs"
-
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
   #[[redirects]]
