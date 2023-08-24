@@ -44,9 +44,9 @@ export async function GET(request: NextRequest) {
   if (slug) {
     //res.setPreviewData({ token: readToken })
     draftMode().enable()
-    return redirect(`/posts/${slug}/preview`)
+    redirect(`/posts/${slug}/preview`)
+  }else{
+    return NextResponse.json({ error: 'Slug query parameter is required' }, { status: 404 })
   }
-
   
-  return NextResponse.json({ error: 'Slug query parameter is required' }, { status: 404 })
 }
