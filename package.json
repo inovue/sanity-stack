@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3015",
+    "prebuild": "node prebuild.js",
     "build": "./build.sh && next build",
     "start": "next start -p 3015",
     "lint": "next lint",

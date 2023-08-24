@@ -11,6 +11,8 @@
 
 *[How to access Tailwind breakpoints/screens from React](https://github.com/tailwindlabs/tailwindcss/discussions/3822?sort=top)
 
+## Bug References
+*[Server.edge not defined Error on nextJS SSR functions cause site to return 500 Errors](https://answers.netlify.com/t/server-edge-not-defined-error-on-nextjs-ssr-functions-cause-site-to-return-500-errors/91793/114)
 
 ## How to deploy
 
