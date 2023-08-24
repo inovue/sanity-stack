@@ -38,3 +38,5 @@ next-env.d.ts
 /public/dist
 /public/languages
 /public/themes
+# Local Netlify folder
+.netlify
