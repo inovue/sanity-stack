@@ -19,9 +19,8 @@ export async function generateStaticParams() {
 
 
 export default async function PostPage({params}: {params: {slug: string}}) {
-  const preview = draftMode().isEnabled ? {token: readToken} : undefined
   
-  const client = getClient(preview)
+  const client = getClient()
   let post = await getPost(client, params.slug)
   
   //const bio = await markdownToHtml(post.bio)
