@@ -6,6 +6,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
   experimental: {
     appDir: true,
+    // serverComponentsExternalPackages: ['shiki'],
   },
   images: {
     remotePatterns: [{ hostname: 'cdn.sanity.io' }],

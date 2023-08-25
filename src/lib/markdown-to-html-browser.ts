@@ -7,7 +7,7 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
 
-import { setCDN } from "shiki";
+import { setCDN, setWasm } from "shiki";
 import remarkRehype from "remark-rehype";
 import rehypeEscapeMermaid from "./rehypeEscapeMermaid";
 import rehypeSlug from "rehype-slug";
@@ -15,7 +15,8 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 export const markdownToHtmlBrowser = async (markdownContent: string) => {
   
-  setCDN("/");
+  setWasm("/shiki/dist/onig.wasm");
+  setCDN("/shiki/");
 
   const processor = unified()
     .use(remarkParse)
