@@ -7,15 +7,25 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
 
-import { setCDN, setWasm } from "shiki";
+import { setCDN, setWasm, BUNDLED_LANGUAGES, getHighlighter, Lang } from "shiki";
 import remarkRehype from "remark-rehype";
 import rehypeEscapeMermaid from "./rehypeEscapeMermaid";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
-export const markdownToHtmlBrowser = async (markdownContent: string) => {
+
+export const getLangTypesFromMarkdown = (markdownContent: string) => {
+  return Array.from(new Set(Array.from(
+    markdownContent.matchAll(/^```(?<lang>\w+)\s?.*$/gm), 
+    (v=>v.groups?.lang)
+  ).filter((v):v is Lang => !!v )));
+}
   
-  setWasm("/shiki/dist/onig.wasm");
+
+export const markdownToHtmlBrowser = async (markdownContent: string) => {
+  const langs = getLangTypesFromMarkdown(markdownContent);
+  
+  // setWasm("/shiki/dist/onig.wasm");
   setCDN("/shiki/");
 
   const processor = unified()
@@ -26,7 +36,13 @@ export const markdownToHtmlBrowser = async (markdownContent: string) => {
     .use(remarkRehype)
     .use(rehypeKatex)
     .use(rehypeEscapeMermaid)
-    .use(rehypePrettyCode)
+    .use(rehypePrettyCode, {
+      getHighlighter: (options) => getHighlighter({
+        ...options,
+        theme:'github-dark-dimmed', 
+        langs: [...langs]
+      })
+    })
     .use(rehypeSlug)
     .use(rehypeAutolinkHeadings)
     .use(rehypeStringify);
