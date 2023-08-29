@@ -8,7 +8,7 @@ const nextConfig = {
     appDir: true,
     serverComponentsExternalPackages: [
       'rehype-mermaidjs', 
-      'shiki'
+      //'shiki'
     ],
   },
   images: {
