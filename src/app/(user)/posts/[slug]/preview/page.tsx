@@ -1,5 +1,3 @@
-import 'katex/dist/katex.min.css'
-
 import { draftMode } from 'next/headers'
 
 import Container from '@/components/Container'

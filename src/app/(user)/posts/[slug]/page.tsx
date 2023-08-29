@@ -1,10 +1,5 @@
-import 'katex/dist/katex.min.css'
-
-import { draftMode } from 'next/headers'
-
 import Container from '@/components/Container'
 import PostMain from '@/components/features/PostMain/PostMain'
-import { readToken } from '@/lib/sanity.api'
 import { getClient } from '@/lib/sanity.client'
 import { getPost, getPostSlugs } from '@/lib/sanity.queries'
 import { markdownToHtml } from '@/lib/markdown-to-html'
@@ -23,8 +18,8 @@ export default async function PostPage({params}: {params: {slug: string}}) {
   const client = getClient()
   let post = await getPost(client, params.slug)
   
-  //const bio = await markdownToHtml(post.bio)
-  //post = {...post , bio}
+  const bio = await markdownToHtml(post.bio)
+  post = {...post , bio}
   
   return (
     <Container>

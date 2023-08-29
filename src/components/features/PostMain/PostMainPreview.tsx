@@ -16,14 +16,16 @@ import PreviewBar from '@/components/PreviewBar'
 export default function PostMainPreview({ post:initialPost }: { post: Post }) {
   
   const [post , setPost] = useState<Post>(initialPost)
-  const [livePost] = useLiveQuery<Post>(
+  const [livePost, loadingLivePost] = useLiveQuery<Post>(
     initialPost, 
     postBySlugQuery.query, 
     {slug: initialPost.slug.current}
   )
   
   useEffect(() => {
+    console.log('livePost',livePost)
     if(livePost){
+      console.log('change live post',livePost.slug.current)
       try {
         markdownToHtmlBrowser(livePost.bio).then((bio)=>{
           setPost(()=>({...livePost, bio}));
@@ -36,10 +38,9 @@ export default function PostMainPreview({ post:initialPost }: { post: Post }) {
   }, [livePost]);
 
   useEffect(() => {
-    console.log('change post!')
     if(post){
       try {
-        
+        console.log('mermaid.initialized!')
         mermaid.initialize({ startOnLoad: false });
         mermaid.run({nodes: document.querySelectorAll('div.language-mermaid')});
       } catch (error) {
@@ -51,6 +52,7 @@ export default function PostMainPreview({ post:initialPost }: { post: Post }) {
   return (
     <>
       <PreviewBar />
+      {loadingLivePost && <p>Loading..</p>}
       <PostMain post={post} />
     </>
   )
