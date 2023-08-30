@@ -13,7 +13,7 @@ export default async function PostPreviewLayout({params}: { params: {slug: strin
   console.log('preview', preview)
   if (!preview) redirect(`/posts/${params.slug}`);
 
-  const client = getClient()
+  const client = getClient(preview)
   const post = await getPost(client, params.slug)
   
   return (
