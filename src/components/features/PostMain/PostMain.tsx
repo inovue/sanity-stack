@@ -10,7 +10,7 @@ export default function PostMain({ post }: { post: Post }) {
     <main className='flex-1'>
       <article className='bg-white rounded-lg md:border'>
         <header className='article__header '>
-          <div className='article__header__cover-image-wrapepr ' style={{ position: 'relative'}}>
+          <div className='article__header__cover-image-wrapepr relative height-[40%]'>
             <Image 
               className='article__header__cover-image absolute inset-0 object-cover bg-gray-400 md:rounded-t-lg' 
               alt="Cover image for xxxxxxxxxxxxx" 

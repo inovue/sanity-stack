@@ -1,3 +1,5 @@
+import 'katex/dist/katex.min.css'
+
 import Container from '@/components/Container'
 
 export default async function PostLayout({children}: {children: React.ReactNode}) {
