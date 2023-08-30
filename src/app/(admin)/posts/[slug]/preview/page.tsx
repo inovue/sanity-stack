@@ -1,13 +1,17 @@
 import { draftMode } from 'next/headers'
 
 import Container from '@/components/Container'
-import PostMainPreview from '@/components/features/PostMain/PostMainPreview'
-import PreviewProvider from '@/components/PreviewProvider'
+//import PostMainPreview from '@/components/features/PostMain/PostMainPreview'
+//import PreviewProvider from '@/components/PreviewProvider'
 import { readToken } from '@/lib/sanity.api'
 import { getClient } from '@/lib/sanity.client'
 import { getPost } from '@/lib/sanity.queries'
 import { redirect } from 'next/navigation'
 
+import dynamic from 'next/dynamic';
+
+const PostMainPreview = dynamic(() => import('@/components/features/PostMain/PostMainPreview'), { ssr: false });
+const PreviewProvider = dynamic(() => import('@/components/PreviewProvider'), { ssr: false });
 
 export default async function PostPage({params}: {params: {slug: string}}) {
   const preview = draftMode().isEnabled ? {token: readToken} : undefined
