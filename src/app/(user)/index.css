@@ -1,0 +1,8 @@
+html {
+  scroll-padding-top: 70px;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}

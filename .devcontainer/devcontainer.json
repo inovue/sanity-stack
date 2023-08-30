@@ -1,12 +1,14 @@
 {
-  "name": "shuta-land",
+  "name": "sanity-stack",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:18-bullseye",
   "containerEnv": {
     "TZ": "Asia/Tokyo"
   },
   "runArgs": ["--privileged", "--init"],
   "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/netlify-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/vercel-cli:1": {}
   },
   "overrideCommand": true,
   "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
@@ -36,7 +38,9 @@
         "esbenp.prettier-vscode",
         "ms-vscode.live-server",
         "dbaeumer.vscode-eslint",
-        "bradlc.vscode-tailwindcss"
+        "bradlc.vscode-tailwindcss",
+        "tamasfe.even-better-toml",
+        "mhutchie.git-graph"
       ]
     }
   }
