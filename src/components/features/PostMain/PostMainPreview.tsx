@@ -1,20 +1,24 @@
 'use client'
 
-import { useLiveQuery } from 'next-sanity/preview'
+import { LiveQueryProvider, useLiveQuery } from 'next-sanity/preview'
 
-import { type Post } from '@/lib/sanity.queries'
+import { getPost, type Post } from '@/lib/sanity.queries'
 import { postBySlugQuery } from '@/lib/sanity.queries'
 
 import PostMain from './PostMain'
 import { markdownToHtmlBrowser } from '@/lib/markdown-to-html-browser'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import mermaid from 'mermaid';
+import { getClient } from '@/lib/sanity.client'
 
 
-export default function PostMainPreview({ post:initialPost }: { post: Post }) {
+export default function PostMainPreview({ token, slug, initialPost }: { token: string, slug: string, initialPost: Post }) {
   
-  const [post , setPost] = useState<Post>(initialPost)
+  const client = getClient({token})
+  const [post , setPost] = useState<Post>()
+  console.log('initialPost',slug, initialPost)
+
   const [livePost, loadingLivePost] = useLiveQuery<Post>(
     initialPost, 
     postBySlugQuery.query, 
@@ -49,9 +53,9 @@ export default function PostMainPreview({ post:initialPost }: { post: Post }) {
   }, [post]);
   
   return (
-    <>
+    <LiveQueryProvider client={client}>
       {loadingLivePost && <p>Loading..</p>}
-      <PostMain post={post} />
-    </>
+      {post && <PostMain post={post} />}
+    </LiveQueryProvider>
   )
 }
