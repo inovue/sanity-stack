@@ -1,3 +1,5 @@
+'use client'
+
 import { useLiveQuery } from 'next-sanity/preview'
 
 import { type Post } from '@/lib/sanity.queries'
@@ -8,7 +10,6 @@ import { markdownToHtmlBrowser } from '@/lib/markdown-to-html-browser'
 import { useEffect, useState } from 'react'
 
 import mermaid from 'mermaid';
-import PreviewBar from '@/components/PreviewBar'
 
 
 export default function PostMainPreview({ post:initialPost }: { post: Post }) {
@@ -49,7 +50,6 @@ export default function PostMainPreview({ post:initialPost }: { post: Post }) {
   
   return (
     <>
-      <PreviewBar />
       {loadingLivePost && <p>Loading..</p>}
       <PostMain post={post} />
     </>

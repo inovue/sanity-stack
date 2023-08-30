@@ -1,5 +1,6 @@
 'use client'
 
+import PreviewBar from '@/components/PreviewBar'
 import PostMainPreview from '@/components/features/PostMain/PostMainPreview'
 import { getClient } from '@/lib/sanity.client'
 import { Post, getPost } from '@/lib/sanity.queries'
@@ -14,6 +15,7 @@ export default function PostPreviewPage({params}: {params: {slug: string}}) {
   
   return (
     <>
+      <PreviewBar />
       {post && 
         <PostMainPreview post={post} />
       }

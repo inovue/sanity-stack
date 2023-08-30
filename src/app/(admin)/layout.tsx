@@ -1,4 +1,5 @@
 import 'easymde/dist/easymde.min.css'
+import './index.css'
 
 export default function RootLayout({
   children,
