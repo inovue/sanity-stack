@@ -10,13 +10,12 @@ export default function PostMain({ post }: { post: Post }) {
     <main className='flex-1'>
       <article className='bg-white rounded-lg md:border'>
         <header className='article__header '>
-          <div className='article__header__cover-image-wrapepr ' style={{ position: 'relative', paddingTop: '40%' }}>
+          <div className='article__header__cover-image-wrapepr ' style={{ position: 'relative'}}>
             <Image 
               className='article__header__cover-image absolute inset-0 object-cover bg-gray-400 md:rounded-t-lg' 
               alt="Cover image for xxxxxxxxxxxxx" 
               src={post.mainImage ? urlForImage(post.mainImage).url() : ''} 
               fill 
-              sizes="100vw" 
             />
           </div>
           <div className='article__header__meta px-3 sm:px-6 md:px-12 lg:px-16 '>

@@ -1,4 +1,3 @@
-import Container from '@/components/Container'
 import PostMain from '@/components/features/PostMain/PostMain'
 import { getClient } from '@/lib/sanity.client'
 import { getPost, getPostSlugs } from '@/lib/sanity.queries'
@@ -22,14 +21,6 @@ export default async function PostPage({params}: {params: {slug: string}}) {
   post = {...post , bio}
   
   return (
-    <Container>
-      <div className='main-wrapper w-full max-w-[1280px] mx-auto flex gap-4 md:p-4'>
-        <PostMain post={post} />
-        
-        <aside className='sidebar-right hidden md:block w-[30%]'>
-          <div className='bg-white'></div>
-        </aside>
-      </div>
-    </Container>
+    <PostMain post={post} />
   )
 }
