@@ -1,3 +1,5 @@
+'use client'
+
 import { useLiveQuery } from 'next-sanity/preview'
 
 import { type Post } from '@/lib/sanity.queries'

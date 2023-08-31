@@ -1,3 +1,5 @@
+'use client'
+
 import { getClient } from "@/lib/sanity.client";
 import { LiveQueryProvider } from "@sanity/preview-kit";
 import { useMemo } from "react";
