@@ -1,23 +1,30 @@
-'use client'
+import { draftMode } from 'next/headers'
 
-import PreviewBar from '@/components/PreviewBar'
+import { readToken } from '@/lib/sanity.api'
+import { redirect } from 'next/navigation'
 import PostMainPreview from '@/components/features/PostMain/PostMainPreview'
 import { getClient } from '@/lib/sanity.client'
-import { Post, getPost } from '@/lib/sanity.queries'
-import { useState } from 'react'
+import { getPost } from '@/lib/sanity.queries'
+import dynamic from 'next/dynamic'
 
-export default function PostPreviewPage({params}: {params: {slug: string}}) {
+const PreviewProvider = dynamic( () => import("@/components/PreviewProvider") );
+
+export default async function PostPreviewLayout({params}: { params: {slug: string}}) {
+  //const preview = draftMode().isEnabled ? {token: readToken} : undefined
+  const preview = {token: readToken}
   
-  //const post = useContext(DataContext)
-  const [post, setPost] = useState<Post>()
-  const client = getClient()
-  getPost(client, params.slug).then((post) => setPost(post))
+  console.log('preview', preview)
+  if (!preview) redirect(`/posts/${params.slug}`);
+
+  const client = getClient(preview)
+  const post = await getPost(client, params.slug)
   
   return (
     <>
-      <PreviewBar />
-      {post && 
-        <PostMainPreview post={post} />
+      {preview && 
+        <PreviewProvider token={preview.token}>
+          <PostMainPreview initialPost={post}/>
+        </PreviewProvider>
       }
     </>
   )

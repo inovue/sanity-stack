@@ -12,9 +12,10 @@ import { useEffect, useState } from 'react'
 import mermaid from 'mermaid';
 
 
-export default function PostMainPreview({ post:initialPost }: { post: Post }) {
+export default function PostMainPreview({ initialPost }: { initialPost: Post }) {
   
-  const [post , setPost] = useState<Post>(initialPost)
+  const [post , setPost] = useState<Post>()
+
   const [livePost, loadingLivePost] = useLiveQuery<Post>(
     initialPost, 
     postBySlugQuery.query, 
@@ -22,9 +23,9 @@ export default function PostMainPreview({ post:initialPost }: { post: Post }) {
   )
   
   useEffect(() => {
-    console.log('livePost',livePost)
+    console.log('livePost', livePost)
     if(livePost){
-      console.log('change live post',livePost.slug.current)
+      console.log('change live post', livePost.slug.current)
       try {
         markdownToHtmlBrowser(livePost.bio).then((bio)=>{
           setPost(()=>({...livePost, bio}));
@@ -39,9 +40,9 @@ export default function PostMainPreview({ post:initialPost }: { post: Post }) {
   useEffect(() => {
     if(post){
       try {
-        console.log('mermaid.initialized!')
         mermaid.initialize({ startOnLoad: false });
         mermaid.run({nodes: document.querySelectorAll('div.language-mermaid')});
+        console.log('render mermaid.')
       } catch (error) {
         console.log(error);
       }
@@ -50,8 +51,14 @@ export default function PostMainPreview({ post:initialPost }: { post: Post }) {
   
   return (
     <>
-      {loadingLivePost && <p>Loading..</p>}
-      <PostMain post={post} />
+      {loadingLivePost && 
+        <div className='fixed z-20 bg-black bg-opacity-50 flex flex-col items-center justify-center min-w-screen min-h-screen'>
+          <p className='text-white font-black text-4xl'>Loading..</p>
+        </div>
+      }
+      {post && 
+        <PostMain post={post} />
+      }
     </>
   )
 }
