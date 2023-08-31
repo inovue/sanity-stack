@@ -5,6 +5,9 @@ import { redirect } from 'next/navigation'
 import PostMainPreview from '@/components/features/PostMain/PostMainPreview'
 import { getClient } from '@/lib/sanity.client'
 import { getPost } from '@/lib/sanity.queries'
+import dynamic from 'next/dynamic'
+
+const PreviewProvider = dynamic( () => import("@/components/PreviewProvider") );
 
 export default async function PostPreviewLayout({params}: { params: {slug: string}}) {
   //const preview = draftMode().isEnabled ? {token: readToken} : undefined
@@ -19,7 +22,9 @@ export default async function PostPreviewLayout({params}: { params: {slug: strin
   return (
     <>
       {preview && 
-        <PostMainPreview token={preview.token} slug={params.slug} initialPost={post}/>
+        <PreviewProvider token={preview.token}>
+          <PostMainPreview initialPost={post}/>
+        </PreviewProvider>
       }
     </>
   )

@@ -7,6 +7,8 @@
 
 ## References
 
+* [nextjs + sanity live preview](https://www.sanity.io/guides/nextjs-live-preview)
+
 * [onig.wasm 404 (Not Found) when using React / Next.js "client component](https://github.com/atomiks/rehype-pretty-code/issues/95#issuecomment-1664463512)
 
 * [How to access Tailwind breakpoints/screens from React](https://github.com/tailwindlabs/tailwindcss/discussions/3822?sort=top)
