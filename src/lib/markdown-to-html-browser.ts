@@ -7,7 +7,7 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
 
-import { setCDN, setWasm, BUNDLED_LANGUAGES, getHighlighter, Lang } from "shiki";
+import { setCDN, setWasm, getHighlighter, Lang } from "shiki";
 import remarkRehype from "remark-rehype";
 import rehypeEscapeMermaid from "./rehypeEscapeMermaid";
 import rehypeSlug from "rehype-slug";

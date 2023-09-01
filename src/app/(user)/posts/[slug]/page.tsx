@@ -1,4 +1,4 @@
-import PostMain from '@/components/features/PostMain/PostMain'
+import Article from './components/Article'
 import { getClient } from '@/lib/sanity.client'
 import { getPost, getPostSlugs } from '@/lib/sanity.queries'
 import { markdownToHtml } from '@/lib/markdown-to-html'
@@ -21,6 +21,6 @@ export default async function PostPage({params}: {params: {slug: string}}) {
   post = {...post , bio}
   
   return (
-    <PostMain post={post} />
+    <Article post={post} />
   )
 }
