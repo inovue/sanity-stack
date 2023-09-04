@@ -13,7 +13,7 @@ export function PreviewBar({className}: PreviewBarProps) {
   const pathname = usePathname()
 
   return (
-    <div className={classNames('bg-yellow-500 text-white text-lg z-20', className)}>
+    <div className={classNames('bg-yellow-600 text-stone-50 text-lg z-20', className)}>
       <div className='relative text-center'>
         <span className='font-black mx-2'>Preview Mode</span>
         <div className="absolute flex flex-col justify-center items-center right-0 top-0 text-2xl">

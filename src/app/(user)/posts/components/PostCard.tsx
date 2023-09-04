@@ -12,15 +12,15 @@ export default function PostCard({ post }: { post: Post }) {
   const sizes = tw.resolveSizes(imageClassName)
   
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow flex w-full ">
+    <div className="bg-stone-50 border border-stone-200 rounded-lg shadow flex w-full ">
       <div className="card__container flex flex-1 flex-col justify-between p-4 leading-normal">
-        <h3 className="card__title mb-2 text-2xl font-bold tracking-tight text-gray-900">
+        <h3 className="card__title mb-2 text-2xl font-bold tracking-tight text-stone-900">
           <Link className="card__link" href={`/posts/${post.slug.current}`}>
             {post.title}
           </Link>
         </h3>
-        <p className="card__excerpt mb-3 font-normal text-gray-700">{post.excerpt}</p>
-        <p className="card__date text-sm text-gray-700">{formatDate(post._createdAt)}</p>
+        <p className="card__excerpt mb-3 font-normal text-stone-700">{post.excerpt}</p>
+        <p className="card__date text-sm text-stone-700">{formatDate(post._createdAt)}</p>
       </div>
       
       {post.mainImage ? (

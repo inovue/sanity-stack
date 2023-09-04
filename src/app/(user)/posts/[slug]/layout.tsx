@@ -7,7 +7,7 @@ export default async function PostLayout({children}: {children: React.ReactNode}
       {children}
       
       <aside className='sidebar-right hidden md:block w-[30%]'>
-        <div className='bg-white'></div>
+        <div className='bg-stone-50'></div>
       </aside>
     </div>
   )

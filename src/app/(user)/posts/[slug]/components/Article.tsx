@@ -7,14 +7,14 @@ import { formatDate } from '@/utils'
 export default function Article({ post }: { post: Post }) {
   const dimensions = post.mainImage?.asset.metadata.dimensions
   return (
-    <article className='bg-white max-w-3xl flex-1 px-3 md:px-6 mx-auto'>
+    <article className='bg-stone-50 max-w-3xl flex-1 px-3 md:px-6 mx-auto'>
       <header className='article__header '>
         
         <div className='article__header__meta pb-8 '>
-          <h1 className="text-5xl font-black mb-2">{post.title}</h1>
+          <h1 className="text-5xl font-black text-stone-800 mb-2 ">{post.title}</h1>
           <div className='tags-wrapper'></div>
           {post._createdAt && (
-            <p className="created-at-wrapper text-gray-700">
+            <p className="created-at-wrapper text-stone-700">
               <time dateTime={post._createdAt} title={post._createdAt}> {formatDate(post._createdAt)} </time>
             </p>
           )}

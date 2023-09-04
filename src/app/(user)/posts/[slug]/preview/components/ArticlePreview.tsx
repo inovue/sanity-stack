@@ -10,6 +10,7 @@ import { markdownToHtmlBrowser } from '@/lib/markdown-to-html-browser'
 import { useEffect, useState } from 'react'
 
 import mermaid from 'mermaid';
+import { LoadingModal } from '@/app/(user)/components/Modal'
 
 
 export default function PostMainPreview({ initialPost }: { initialPost: Post }) {
@@ -52,9 +53,7 @@ export default function PostMainPreview({ initialPost }: { initialPost: Post }) 
   return (
     <>
       {loadingLivePost && 
-        <div tabIndex={-1} className='fixed top-0 left-0 z-20 bg-black bg-opacity-50 flex flex-col items-center justify-center min-w-screen min-h-screen'>
-          <p className='text-white font-black text-4xl'>Loading..</p>
-        </div>
+        <LoadingModal />
       }
       {post && 
         <Article post={post} />

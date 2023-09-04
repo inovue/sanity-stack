@@ -1,6 +1,7 @@
 import PostsList from './posts/components/PostsList'
 import { getClient } from '@/lib/sanity.client'
 import { getPosts } from '@/lib/sanity.queries'
+import { LoadingModal } from './components/Modal'
 
 
 export default async function Page() {
