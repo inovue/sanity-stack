@@ -9,7 +9,7 @@ export type PreviewBarProps = {
   className?: string
 }
 
-export default function PreviewBar({className}: PreviewBarProps) {
+export function PreviewBar({className}: PreviewBarProps) {
   const pathname = usePathname()
 
   return (

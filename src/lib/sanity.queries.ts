@@ -9,7 +9,7 @@ export const postFieldsSchema = {
   title: q.string().optional(),
   slug: q.object({current:q.string(), _type:q.string()}),
   excerpt: q.string().optional(),
-  mainImage: sanityImage("mainImage", {withAsset:['lqip','base']}).nullable(),
+  mainImage: sanityImage("mainImage", {withAsset:['lqip','base','dimensions']}).nullable(),
   body: q.contentBlocks(),
   bio: q.string(),
 }
