@@ -31,7 +31,7 @@ export default function Article({ post }: { post: Post }) {
           </div>
         }
       </header>
-      <section className='prose pb-8' dangerouslySetInnerHTML={{ __html: post.bio }}></section>
+      <section className='prose dark:prose-invert pb-8' dangerouslySetInnerHTML={{ __html: post.bio }}></section>
     
       {/*
         <div className="prose px-4 sm:px-6 md:px-8 mx-auto mt-12 mb-6">
