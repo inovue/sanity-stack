@@ -5,22 +5,22 @@ import { defineType } from "sanity";
 import locale from "./locale";
 
 export default defineType({
-  name: "openGraph",
-  title: "Social Share Config",
+  name: "settings",
+  title: "Site settings",
   type: "object",
   fields: [
     {
       type: 'string',
       name: 'site_name',
       title: 'Site Name',
-      group: ['og', 'meta'],
+      // group: ['og', 'meta'],
       // fieldset: "optional"
     },
     {
       type: "text",
       name: "ogDescription",
       title: "Social Share Description",
-      group: ['og', 'meta']
+      // group: ['og', 'meta']
     },
     {
       type: 'url',
@@ -28,7 +28,7 @@ export default defineType({
       name: 'url',
       description: 'Most likely either the url of the page or its canonical url',
       validation: (Rule: Rule) => Rule.required(),
-      group: ['og', 'meta'],
+      // group: ['og', 'meta'],
       // fieldset: "basic"
     },
     {
@@ -47,7 +47,7 @@ export default defineType({
       description:
         'URL of the image that should be used in social media previews. If you define this, you must define two other OG basic properties as well: title and type.',
       validation: (Rule: Rule) => Rule.required(),
-      group: ['og'],
+      // group: ['og'],
       // fieldset: "basic"
     },
     locale

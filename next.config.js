@@ -12,6 +12,8 @@ const nextConfig = {
       //'shiki'
     ],
     
+    urlImports: ['https://cdn.sanity.io/images/'],
+    
   },
   images: {
     remotePatterns: [{ hostname: 'cdn.sanity.io' }],

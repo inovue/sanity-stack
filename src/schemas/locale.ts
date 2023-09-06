@@ -27,7 +27,7 @@ const locale = defineField({
     list: locales
   },
   initialValue: locales[0].value,
-  group: ['meta', 'og'],
+  // group: ['meta', 'og'],
 })
 
 export default locale;

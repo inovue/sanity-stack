@@ -7,6 +7,7 @@ import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { markdownSchema } from "sanity-plugin-markdown/next";
 import {media} from 'sanity-plugin-media'
+import desktoolOptions from './lib/sanity.desk'
 
 // see https://www.sanity.io/docs/api-versioning for how versioning works
 import {
@@ -27,7 +28,7 @@ export default defineConfig({
   //edit schemas in './src/schemas'
   schema,
   plugins: [
-    deskTool(),
+    deskTool(desktoolOptions),
     media(),
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin

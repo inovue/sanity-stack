@@ -40,7 +40,8 @@
         "dbaeumer.vscode-eslint",
         "bradlc.vscode-tailwindcss",
         "tamasfe.even-better-toml",
-        "mhutchie.git-graph"
+        "mhutchie.git-graph",
+        "GitHub.vscode-pull-request-github"
       ]
     }
   }
