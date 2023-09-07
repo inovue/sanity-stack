@@ -1,4 +1,4 @@
-import { loadGoogleFont } from '@/lib/font';
+import { loadGoogleFont } from '@/lib/loadGoogleFont';
 import { getClient } from '@/lib/sanity.client';
 import { getPost } from '@/lib/sanity.queries';
 import { ImageResponse } from 'next/server';

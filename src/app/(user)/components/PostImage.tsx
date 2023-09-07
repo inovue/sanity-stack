@@ -10,9 +10,6 @@ const PostImage: PostImageFunc = () => (props) => {
     const { src, alt, title } = props
     if(src === undefined) throw new Error('src is undefined');
 
-    //const image = dynamic('../_posts/' + slug + '/' + src).default
-    //const image = dynamic( () => import(src) );
-    
     const image = new URL(src, import.meta.url)
     
     return <Image
