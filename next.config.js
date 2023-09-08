@@ -12,7 +12,7 @@ const nextConfig = {
       //'shiki'
     ],
     
-    urlImports: ['https://cdn.sanity.io/images/'],
+    //urlImports: ['https://cdn.sanity.io/images/'],
     
   },
   images: {
