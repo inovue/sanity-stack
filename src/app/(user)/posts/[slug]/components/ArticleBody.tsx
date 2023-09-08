@@ -1,5 +1,4 @@
 import classNames from "classnames"
-import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import remarkGemoji from "remark-gemoji"
 import remarkGfm from "remark-gfm"
@@ -10,7 +9,7 @@ import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import PostImage from "@/app/(user)/components/PostImage"
-import rehypeSanitize from 'rehype-sanitize'
+import rehypeRaw from 'rehype-raw'
 
 const components = {
   img: PostImage()
@@ -29,21 +28,24 @@ export default function ArticleBody({source, className}: ArticleBodyProps) {
       // made available to the arguments of any custom mdx component
       scope: {},
       mdxOptions: {
+        remarkRehypeOptions:{
+          allowDangerousHtml: true,
+        },
         remarkPlugins: [
           remarkGemoji, 
           remarkGfm, 
           remarkMath
         ],
         rehypePlugins: [
-          rehypeSanitize,
           rehypeKatex, 
           rehypeMermaid, 
           rehypePrettyCode, 
           rehypeSlug, 
           [rehypeAutolinkHeadings, {behavior: 'wrap'}],
-          
+          // @ts-expect-error
+          rehypeRaw
         ],
-        format: 'mdx',
+        format: 'md',
       },
       parseFrontmatter: false,
     }

@@ -2,20 +2,22 @@
 
 import Image from 'next/image'
 import React, { createElement } from 'react'
+import dynamic from 'next/dynamic'
+
 
 type PostImageFunc = () => React.FC<JSX.IntrinsicElements['img']>
 
 const PostImage: PostImageFunc = () => (props) => {
   try {
+    
     const { src, alt, title } = props
     if(src === undefined) throw new Error('src is undefined');
 
-    const image = new URL(src, import.meta.url)
-    
     return <Image
-      src={image.pathname}
+      src={require(src)}
       alt={alt||title||''}
       title={title||''}
+      sizes="(max-width: 768px) 100vw, 50vw"
     />
 
   } catch (e) {
