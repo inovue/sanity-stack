@@ -2,7 +2,7 @@ import { draftMode } from 'next/headers'
 
 import { readToken } from '@/lib/sanity.api'
 import { redirect } from 'next/navigation'
-import ArticlePreview from './components/ArticlePreview'
+import ArticlePreview from './_components/ArticlePreview'
 import { getClient } from '@/lib/sanity.client'
 import { getPost } from '@/lib/sanity.queries'
 import dynamic from 'next/dynamic'
