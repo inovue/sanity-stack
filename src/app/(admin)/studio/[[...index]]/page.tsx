@@ -1,5 +1,7 @@
 "use client";
 
+import 'easymde/dist/easymde.min.css'
+
 import { NextStudio } from "next-sanity/studio";
 import { StudioLayout, StudioProvider } from "sanity";
 import config from "@/sanity.config";

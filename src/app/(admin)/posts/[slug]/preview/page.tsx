@@ -6,7 +6,8 @@ import ArticlePreview from './components/ArticlePreview'
 import { getClient } from '@/lib/sanity.client'
 import { getPost } from '@/lib/sanity.queries'
 import dynamic from 'next/dynamic'
-import Article from '../components/Article'
+import Article from '../../../../(user)/posts/[slug]/components/Article'
+import Container from '@/app/(user)/components/Container'
 
 const PreviewProvider = dynamic( () => import("@/app/(user)/components/PreviewProvider") );
 
@@ -20,7 +21,7 @@ export default async function PostPreviewLayout({params}: { params: {slug: strin
   const post = await getPost(client, params.slug)
   
   return (
-    <>
+    <Container>
       {preview && 
         <PreviewProvider token={preview.token}>
           <Article post={post}>
@@ -28,6 +29,6 @@ export default async function PostPreviewLayout({params}: { params: {slug: strin
           </Article>
         </PreviewProvider>
       }
-    </>
+    </Container>
   )
 }

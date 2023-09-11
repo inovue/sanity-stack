@@ -3,6 +3,7 @@ import { getClient } from '@/lib/sanity.client'
 import { getPost, getPostSlugs } from '@/lib/sanity.queries'
 import { markdownToHtml } from '@/lib/markdown-to-html'
 import ArticleBody from './components/ArticleBody'
+import Container from '../../components/Container'
 
 
 export async function generateStaticParams() {
@@ -22,8 +23,10 @@ export default async function PostPage({params}: {params: {slug: string}}) {
   post = {...post , bio}
   
   return (
-    <Article post={post}>
-      <ArticleBody className='pb-8' source={post.bio} />
-    </Article>
+    <Container>
+      <Article post={post}>
+        <ArticleBody className='pb-8' source={post.bio} />
+      </Article>
+    </Container>
   )
 }

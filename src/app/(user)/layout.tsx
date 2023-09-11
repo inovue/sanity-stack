@@ -1,8 +1,6 @@
 import '../globals.css'
 import './index.css'
 
-import Footer from './components/Footer'
-import Header from './components/Header'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -17,13 +15,9 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="ja">
-      <body className='bg-slate-500'>
-        <Header />
-        <main>
+      <body>
           {children}
-        </main>
-        <Footer />
-        </body>
+      </body>
     </html>
   )
 }

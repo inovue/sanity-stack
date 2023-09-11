@@ -1,5 +1,6 @@
-//import Image from 'next/image'
+import 'katex/dist/katex.min.css'
 
+//import Image from 'next/image'
 import { type Post } from '@/lib/sanity.queries'
 import ArticleHeader from './ArticleHeader'
 import ArticleBody from './ArticleBody'
