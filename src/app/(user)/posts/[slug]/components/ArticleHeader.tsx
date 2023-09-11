@@ -1,7 +1,7 @@
 import classNames from "classnames"
 import { Post } from "@/lib/sanity.queries"
 import { formatDate } from "@/utils"
-import Image from '@/app/(user)/components/Image'
+import Image from 'next/image'
 
 
 export type ArticleHeaderProps = {
@@ -28,7 +28,7 @@ export default async function ArticleHeader({post, className}: ArticleHeaderProp
           <div className='relative w-full h-auto'>
             <Image 
               alt="Cover image for xxxxxxxxxxxxx" 
-              src={post.mainImage}
+              src={post.mainImage.asset.url}
               width={ dimensions.width } 
               height={ dimensions.height }
               sizes="(max-width: 768px) 100vw, 50vw"

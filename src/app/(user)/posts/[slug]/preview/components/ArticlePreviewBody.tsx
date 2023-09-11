@@ -13,16 +13,16 @@ import rehypePrettyCode from "rehype-pretty-code"
 import {Options} from 'rehype-pretty-code'
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import PostImage from "@/app/(user)/components/PostImage"
+import {img} from "@/app/(user)/components/MDX"
 import rehypeRaw from 'rehype-raw'
 import { setCDN, setWasm, getHighlighter } from "shiki";
 import getLangTypesFromMarkdown from "@/lib/getLangTypesFromMarkdown"
 import theme from 'shiki/themes/github-dark-dimmed.json'
-import { use, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import mermaid from "mermaid"
 
 const components = {
-  img: PostImage()
+  img: img()
 }
 
 export type ArticleBodyProps = {
@@ -35,7 +35,7 @@ export default function ArticleBodyPreview({source, className}: ArticleBodyProps
   const [serializeResult, setSerializeResult] = useState<Awaited<ReturnType<typeof serialize>>>()
   
   setCDN("/shiki/");
-  
+
   useEffect(() => {
     (async () => {
       
@@ -82,9 +82,8 @@ export default function ArticleBodyPreview({source, className}: ArticleBodyProps
       try {
         mermaid.initialize({ startOnLoad: false });
         mermaid.run({nodes: document.querySelectorAll('pre[data-language="mermaid"]')});
-        console.log('render mermaid.')
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
   }, [serializeResult]);

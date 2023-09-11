@@ -8,11 +8,11 @@ import rehypeMermaid from "rehype-mermaidjs"
 import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import PostImage from "@/app/(user)/components/PostImage"
+import {img} from "@/app/(user)/components/MDX"
 import rehypeRaw from 'rehype-raw'
 
 const components = {
-  img: PostImage()
+  img: img()
 }
 
 export type ArticleBodyProps = {

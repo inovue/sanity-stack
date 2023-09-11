@@ -1,4 +1,4 @@
-import Image from '@/app/(user)/components/Image'
+import Image from 'next/image'
 
 import { type Post } from '@/lib/sanity.queries'
 import { formatDate } from '@/utils'
@@ -26,7 +26,7 @@ export default function PostCard({ post }: { post: Post }) {
       {post.mainImage ? (
         <figure className={classNames('relative', imageClassName)}>
           <Image 
-            src={post.mainImage}
+            src={post.mainImage.asset.url}
             className="card__cover rounded-r-lg object-cover" 
             sizes={sizes}
             fill

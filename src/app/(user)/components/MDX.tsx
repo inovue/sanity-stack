@@ -2,11 +2,10 @@
 
 import Image from 'next/image'
 import React, { createElement } from 'react'
-import dynamic from 'next/dynamic'
 
-type PostImageFunc = () => React.FC<JSX.IntrinsicElements['img']>
+type imgFunction = () => React.FC<JSX.IntrinsicElements['img']>
 
-const PostImage: PostImageFunc = () => (props) => {
+export const img: imgFunction = () => (props) => {
   try {
     
     const { src, alt, title } = props
@@ -27,4 +26,3 @@ const PostImage: PostImageFunc = () => (props) => {
     return createElement('img', props)
   }
 }
-export default PostImage
