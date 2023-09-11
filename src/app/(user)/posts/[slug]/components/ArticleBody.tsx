@@ -28,6 +28,7 @@ export default function ArticleBody({source, className}: ArticleBodyProps) {
       // made available to the arguments of any custom mdx component
       scope: {},
       mdxOptions: {
+        development: process.env.NODE_ENV === 'development',
         remarkRehypeOptions:{
           allowDangerousHtml: true,
         },
@@ -52,7 +53,7 @@ export default function ArticleBody({source, className}: ArticleBodyProps) {
   }
 
   return (
-    <section className={classNames(['prose','dark:prose-invert'], className)}>
+    <section className={classNames(['prose', 'dark:prose-invert'], className)}>
       <MDXRemote {...mdxRemoteProps} components={components} />
     </section>
   )
