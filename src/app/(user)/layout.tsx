@@ -1,4 +1,5 @@
 import '../globals.css'
+import Container from './components/Container'
 import './index.css'
 
 import { Metadata } from 'next'
@@ -16,7 +17,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="ja">
       <body>
+        <Container>
           {children}
+        </Container>
       </body>
     </html>
   )

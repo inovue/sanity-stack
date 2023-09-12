@@ -25,7 +25,7 @@ export default async function PostPreviewPage({params}: { params: {slug: string}
   const post = await getPost(client, params.slug)
   
   return (
-    <Container>
+    <>
       {preview && 
         <PreviewProvider token={preview.token}>
           <Article post={post}>
@@ -33,6 +33,6 @@ export default async function PostPreviewPage({params}: { params: {slug: string}
           </Article>
         </PreviewProvider>
       }
-    </Container>
+    </>
   )
 }

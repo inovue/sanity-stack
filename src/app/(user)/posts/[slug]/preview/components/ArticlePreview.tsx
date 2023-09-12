@@ -14,7 +14,7 @@ import remarkGemoji from "remark-gemoji"
 import remarkGfm from "remark-gfm"
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
-//import remarkMermaid from 'remark-mermaidjs'
+// import remarkMermaid from 'remark-mermaidjs'
 import rehypePrettyCode from "rehype-pretty-code"
 import {Options} from 'rehype-pretty-code'
 import rehypeSlug from "rehype-slug"
@@ -26,6 +26,7 @@ import getLangTypesFromMarkdown from "@/lib/getLangTypesFromMarkdown"
 import theme from 'shiki/themes/github-dark-dimmed.json'
 import { useEffect, useState } from "react"
 import mermaid from "mermaid"
+import rehypeEscapeMermaid from '@/lib/rehypeEscapeMermaid'
 
 
 export type PostPreviewProps = {
@@ -85,10 +86,11 @@ function ArticlePreviewBody({source, className}: ArticlePreviewBodyProps) {
             remarkGemoji, 
             remarkGfm, 
             remarkMath,
-            //remarkMermaid 
+            // remarkMermaid 
           ],
           rehypePlugins: [
             rehypeKatex, 
+            rehypeEscapeMermaid,
             [rehypePrettyCode, {
               getHighlighter: (options:Pick<Options, 'theme'>) => getHighlighter({
                 ...options,
@@ -112,17 +114,18 @@ function ArticlePreviewBody({source, className}: ArticlePreviewBodyProps) {
     })()
   }, [source])
 
+  
   useEffect(() => {
     if(serializeResult){
       try {
         mermaid.initialize({ startOnLoad: false });
-        mermaid.run({nodes: document.querySelectorAll('pre[data-language="mermaid"]')});
+        mermaid.run({nodes: document.querySelectorAll('div.language-mermaid')});
       } catch (error) {
         console.error(error);
       }
     }
   }, [serializeResult]);
-
+  
 
   return (
     <section className={classNames(['prose','dark:prose-invert'], className)}>

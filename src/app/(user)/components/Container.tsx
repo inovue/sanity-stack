@@ -10,12 +10,12 @@ export default function Container({ children }:ContainerProps) {
   return (
     <>
       <Header />
-      <div className={classNames('w-full max-w-[1280px] mx-auto flex gap-4 md:p-4')}>
+      <div className={classNames('w-full max-w-[1280px] mb-auto flex gap-4')}>
         <main>
           {children}
         </main>
         
-        <aside className='sidebar-right hidden md:block w-[30%]'>
+        <aside className='hidden md:block w-[30%]'>
           <div className='bg-stone-50'></div>
         </aside>
       </div>
