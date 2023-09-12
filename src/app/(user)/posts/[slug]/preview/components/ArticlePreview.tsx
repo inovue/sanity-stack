@@ -1,5 +1,11 @@
 'use client'
 
+import { useLiveQuery } from 'next-sanity/preview'
+import { type Post } from '@/lib/sanity.queries'
+import { postBySlugQuery } from '@/lib/sanity.queries'
+import { LoadingModal } from '@/app/(user)/components/Modal'
+
+
 import classNames from "classnames"
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -21,16 +27,45 @@ import theme from 'shiki/themes/github-dark-dimmed.json'
 import { useEffect, useState } from "react"
 import mermaid from "mermaid"
 
+
+export type PostPreviewProps = {
+  post: Post;
+  className?: string;
+}
+
+export default function PostPreview({ post }: PostPreviewProps) {
+  
+  const [livePost, loadingLivePost] = useLiveQuery<Post>(
+    post, 
+    postBySlugQuery.query, 
+    {slug: post.slug.current}
+  )
+  
+  return (
+    <>
+      {loadingLivePost && 
+        <LoadingModal />
+      }
+      { livePost.bio && 
+        <ArticlePreviewBody source={livePost.bio} />
+      }
+    </>
+  )
+}
+
+
+
+
 const components = {
   img: img()
 }
 
-export type ArticleBodyProps = {
+type ArticlePreviewBodyProps = {
   source: string;
   className?: string;
 }
 
-export default function ArticleBodyPreview({source, className}: ArticleBodyProps) {
+function ArticlePreviewBody({source, className}: ArticlePreviewBodyProps) {
   
   const [serializeResult, setSerializeResult] = useState<Awaited<ReturnType<typeof serialize>>>()
   
